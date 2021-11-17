@@ -25,6 +25,11 @@ public class UserJoinServlet extends HttpServlet {
         String nm = req.getParameter("nm");
         int gender = MyUtils.getParameterInt(req, "gender");
 
+        System.out.println("uid : " + uid);
+        System.out.println("upw : " + upw);
+        System.out.println("nm : " + nm);
+        System.out.println("gender : " + gender);
+
         UserVO param = new UserVO();
         param.setUid(uid);
         param.setUpw(upw);
