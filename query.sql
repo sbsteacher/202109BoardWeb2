@@ -1,6 +1,6 @@
 CREATE TABLE t_user (
     iuser INT unsigned PRIMARY KEY AUTO_INCREMENT,
-    uid VARCHAR(20) NOT NULL,
+    uid VARCHAR(20) unique NOT NULL,
     upw VARCHAR(50) NOT NULL,
     nm VARCHAR(5) NOT NULL,
     gender INT UNSIGNED CHECK ( gender IN (0, 1) ),

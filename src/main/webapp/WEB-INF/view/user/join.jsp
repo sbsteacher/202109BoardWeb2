@@ -1,13 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String msg = (String)request.getAttribute("msg");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
+    <style>
+        .err { color: red; }
+    </style>
 </head>
 <body>
     <h1>회원가입</h1>
+    <% if(msg != null) { %>
+        <div class="err"><%=msg%></div>
+    <% } %>
     <div>
         <form action="/user/join" method="post">
             <div><input type="text" name="uid" placeholder="user id"></div>
