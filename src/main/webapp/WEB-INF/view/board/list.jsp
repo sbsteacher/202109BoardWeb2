@@ -13,7 +13,10 @@
 <body>
     <div>
     <% if(loginUser != null) { %>
-        <%=loginUser.getNm()%>(<%=loginUser.getUid()%>)님 환영합니다. <a href="/user/logout">로그아웃</a>
+        <div>
+            <a href="/board/write"><input type="button" value="글쓰기"></a>
+            <%=loginUser.getNm()%>(<%=loginUser.getUid()%>)님 환영합니다. <a href="/user/logout">로그아웃</a>
+        </div>
     <% } else { %>
         <a href="/user/login">로그인</a>
     <% } %>
