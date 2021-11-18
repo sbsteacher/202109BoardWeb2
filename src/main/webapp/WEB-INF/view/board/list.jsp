@@ -27,15 +27,17 @@
     <h1>리스트</h1>
     <table>
         <tr>
-            <td>번호</td>
-            <td>제목</td>
-            <td>작성자</td>
-            <td>작성일시</td>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일시</th>
         </tr>
         <% for(BoardVO vo : list) { %>
             <tr>
                 <td><%=vo.getIboard()%></td>
-                <td><%=vo.getTitle()%></td>
+                <td>
+                    <a href="/board/detail?pk=<%=vo.getIboard()%>"><%=vo.getTitle()%></a>
+                </td>
                 <td><%=vo.getWriterNm()%></td>
                 <td><%=vo.getRdt()%></td>
             </tr>

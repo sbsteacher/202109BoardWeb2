@@ -54,4 +54,33 @@ public class BoardDAO {
         } finally { DbUtils.close(con, ps, rs); }
         return list;
     }
+
+    public static BoardVO selBoardDetail(BoardVO param) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = " SELECT A.title, A.ctnt, A.rdt, A.writer, B.nm AS writerNm " +
+                    " FROM t_board A " +
+                    " INNER JOIN t_user B " +
+                    " ON A.writer = B.iuser" +
+                    " WHERE A.iboard = ? ";
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getIboard());
+            rs = ps.executeQuery();
+            if(rs.next()) {
+                BoardVO data = new BoardVO();
+                data.setIboard(param.getIboard());
+                data.setTitle(rs.getString("title"));
+                data.setCtnt(rs.getString("ctnt"));
+                data.setRdt(rs.getString("rdt"));
+                data.setWriter(rs.getInt("writer"));
+                data.setWriterNm(rs.getString("writerNm"));
+                return data;
+            }
+        } catch (Exception e) { e.printStackTrace();
+        } finally { DbUtils.close(con, ps, rs); }
+        return null;
+    }
 }
