@@ -83,4 +83,22 @@ public class BoardDAO {
         } finally { DbUtils.close(con, ps, rs); }
         return null;
     }
+
+    public static int delBoard(BoardVO param) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = " DELETE FROM t_board WHERE iboard = ? AND writer = ? ";
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getIboard());
+            ps.setInt(2, param.getWriter());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, ps);
+        }
+        return 0;
+    }
 }

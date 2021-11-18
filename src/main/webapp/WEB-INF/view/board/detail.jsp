@@ -16,9 +16,10 @@
     <h1>디테일</h1>
     <div><a href="/board/list">리스트</a></div>
     <% if(loginUser != null && data.getWriter() == loginUser.getIuser()) { %>
-        <a href="/board/mod?iboard=${requestScope.data.iboard}"><input type="button" value="수정"></a>
-        <a href="/board/del?iboard=${requestScope.data.iboard}"><input type="button" value="삭제"></a>
+        <a href="/board/mod?pk=${requestScope.data.iboard}"><input type="button" value="수정"></a>
+        <a href="/board/del?pk=${requestScope.data.iboard}"><input type="button" value="삭제"></a>
     <% } %>
+    <div>${requestScope.err}</div>
     <div>번호 : ${requestScope.data.iboard}</div>
     <div>제목 : ${requestScope.data.title}</div>
     <div>작성자 : ${requestScope.data.writerNm}</div>
