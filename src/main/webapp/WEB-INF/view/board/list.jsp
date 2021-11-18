@@ -1,7 +1,10 @@
 <%@ page import="com.koreait.board2.model.UserVO" %>
+<%@ page import="com.koreait.board2.model.BoardVO" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     UserVO loginUser = (UserVO)session.getAttribute("loginUser");
+    List<BoardVO> list = (List<BoardVO>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,5 +25,21 @@
     <% } %>
     </div>
     <h1>리스트</h1>
+    <table>
+        <tr>
+            <td>번호</td>
+            <td>제목</td>
+            <td>작성자</td>
+            <td>작성일시</td>
+        </tr>
+        <% for(BoardVO vo : list) { %>
+            <tr>
+                <td><%=vo.getIboard()%></td>
+                <td><%=vo.getTitle()%></td>
+                <td><%=vo.getWriterNm()%></td>
+                <td><%=vo.getRdt()%></td>
+            </tr>
+        <% } %>
+    </table>
 </body>
 </html>

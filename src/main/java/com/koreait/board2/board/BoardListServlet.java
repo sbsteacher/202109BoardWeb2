@@ -13,6 +13,8 @@ import java.io.IOException;
 public class BoardListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.setAttribute("list", BoardDAO.selBoardList());
+        //disForward는 항상 가장 아래에 두세요.
         MyUtils.disForward(req, res, "board/list");
     }
 }

@@ -38,8 +38,15 @@ public class BoardWriteServlet extends HttpServlet {
         param.setCtnt(ctnt);
         param.setWriter(loginUser.getIuser());
 
-        // TODO : 에러 예외처리
         int result = BoardDAO.insBoard(param);
-        res.sendRedirect("/board/list");
+        switch (result) {
+            case 1:
+                res.sendRedirect("/board/list");
+                break;
+            case 0:
+                req.setAttribute("err", "글 등록에 실패하였습니다.");
+                doGet(req, res);
+                break;
+        }
     }
 }

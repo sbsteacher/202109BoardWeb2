@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String err = (String)request.getAttribute("err");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,6 +11,9 @@
 </head>
 <body>
     <h1>글쓰기</h1>
+    <% if(err != null) { %>
+        <div><%=err%></div>
+    <% } %>
     <div>
         <form action="/board/write" method="post">
             <div><input type="text" name="title" placeholder="title"></div>
