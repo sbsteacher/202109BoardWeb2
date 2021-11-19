@@ -19,7 +19,6 @@ public class BoardDetailServlet extends HttpServlet {
         BoardVO param = new BoardVO();
         param.setIboard(iboard);
 
-
         req.setAttribute("data", BoardDAO.selBoardDetail(param));
         MyUtils.disForward(req, res, "board/detail");
     }

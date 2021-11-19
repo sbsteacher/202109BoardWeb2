@@ -19,7 +19,7 @@ public class BoardDelServlet extends HttpServlet {
         HttpSession session = req.getSession();
         UserVO loginUser = (UserVO) session.getAttribute("loginUser");
         if(loginUser == null) {
-            //res.sendRedirect("/board/detail?err=1");
+            //res.sendRedirect("/board/detail");
             req.setAttribute("err", "로그인 해주세요.");
             req.getRequestDispatcher("/board/detail").forward(req, res);
             return;
