@@ -19,12 +19,12 @@ public class BoardModServlet extends HttpServlet {
             res.sendRedirect("/user/login");
             return;
         }
-
-        int iboard = MyUtils.getParameterInt(req, "pk");
-        BoardVO param = new BoardVO();
-        param.setIboard(iboard);
-
-        req.setAttribute("data", BoardDAO.selBoardDetail(param));
+        if(req.getAttribute("data") == null) {
+            int iboard = MyUtils.getParameterInt(req, "pk");
+            BoardVO param = new BoardVO();
+            param.setIboard(iboard);
+            req.setAttribute("data", BoardDAO.selBoardDetail(param));
+        }
         MyUtils.disForward(req, res, "board/mod");
     }
 
@@ -33,13 +33,11 @@ public class BoardModServlet extends HttpServlet {
         int iboard = MyUtils.getParameterInt(req, "pk");
         String title = req.getParameter("title");
         String ctnt = req.getParameter("ctnt");
-
         BoardVO param = new BoardVO();
         param.setIboard(iboard);
         param.setTitle(title);
         param.setCtnt(ctnt);
         param.setWriter(MyUtils.getLoginUserPk(req));
-
         int result = BoardDAO.updBoard(param);
         switch (result) {
             case 1:
@@ -47,6 +45,7 @@ public class BoardModServlet extends HttpServlet {
                 break;
             default:
                 req.setAttribute("err", "수정에 실패하였습니다.");
+                req.setAttribute("data", param);
                 doGet(req, res);
                 break;
         }
